@@ -13,11 +13,17 @@
 
 Algoritmo sin_titulo
 	definir selec Como cadena
-	definir n como entero
+	definir n,i como entero
+	Definir Vector_A, Vector_B, Vector_C Como Real
 	n=0
+	
+	Dimension Vector_A[10]
+	Dimension Vector_B[10]
+	Dimension Vector_C[10]
+
 	Hacer
 		escribir"selecciones una de las siguientes opciones"
-		escribir"A. llenar vector a"
+		escribir"A. llenar vector A"
 		escribir"B. Llenar Vector B."
 		escribir"C. Llenar Vector C con la suma de los vectores A y B"
 		escribir"D. Llenar Vector C con la resta de los vectores B y A."
@@ -28,15 +34,19 @@ Algoritmo sin_titulo
 		
 		segun selec 
 			"A":
-				vectorA()
+				Para i<-0 Hasta 9 Hacer
+					Vector_A[i]=Aleatorio(-100,100)
+				FinPara
 			"B":
-				vectorB()
+				Para i<-0 Hasta 9 Hacer
+					Vector_B[i]=Aleatorio(-100,100)
+				FinPara
 			"C":
-				suma()
+				suma(vector_A,Vector_B, Vector_C)
 			"D":
-				resta()
+				resta(vector_A,Vector_B, Vector_C)
 			"E":
-				mostrarvector()
+				mostrarvector(vector_A,Vector_B, Vector_C)
 			"F":
 				escribir"hemos llegado hasta aqui, fue un place"
 				n=1
@@ -47,58 +57,56 @@ Algoritmo sin_titulo
 	
 FinAlgoritmo
 
-subproceso vectorA()
-	Definir i,vA Como Entero
-	Dimension vA[10]
 	
-	Para i<-0 Hasta N Hacer
-		vA[i]=Aleatorio(-100,100)
-	FinPara
-FinSubProceso
-
-subproceso vectorB()
-	Definir i,vB Como Entero
-	Dimension vB[10]
+subproceso suma(vector_A,Vector_B, Vector_C Por Referencia)
+	definir n,i como entero
 	
-	Para i<-0 Hasta N Hacer
-		vB[i]=Aleatorio(-100,100)
+	para i<-0 Hasta 9 Hacer
+		Vector_C[i]=Vector_A[i]+Vector_B[i]
+	FinPara
+	
+FinSubProceso
+subproceso resta(vector_A,Vector_B, Vector_C Por Referencia)
+	definir n,i como entero
+	
+	para i<-0 Hasta 9 Hacer
+		Vector_C[i]=Vector_B[i]-Vector_A[i]
 	FinPara
 FinSubProceso
 
-subproceso suma()
-	Definir i,vC Como Entero
-	Dimension vC[10]
-	VectorA(vA)
-	VectorB(vB)
-	Para i<-0 Hasta N Hacer
-		vC[i]=vA[i]+vB[i]
-	FinPara
-FinSubProceso
-subproceso resta()
-	Definir i,vC Como Entero
-	Dimension vC[10]
-	VectorA()
-	VectorB()
-	Para i<-0 Hasta N Hacer
-		vC[i]=vA[i]-vB[i]
-	FinPara
-FinSubProceso
-
-subproceso mostrarvector()
-	Definir aux Como Caracter
-	Escribir 'Seleccione Que Vector Quiere ver'
-	Escribir 'Vector A'
-	Escribir 'Vector B'
-	Escribir 'Vector C'
-	leer aux
-	Segun aux
-		'vector A':
-			vectorA()
-			para i<-0 Hasta N Hacer
-				Escribir vA[i]
-			FinPara
-			
-	FinSegun
+subproceso mostrarvector(Vector_A,Vector_B, Vector_C)
+	Definir n Como Caracter
+	Definir i,nD Como Entero
+	nD=0
+	Hacer
+		Escribir 'Seleccione Que Vector Quiere ver'
+		Escribir 'A'
+		Escribir 'B'
+		Escribir 'C'
+		leer n
+		n=Mayusculas(n)
+		Segun n Hacer
+			'A': 
+				para i<-0 Hasta 9 Hacer
+					Escribir '[' Vector_A[i] ']'
+				FinPara
+				nD=1 
+			'B': 
+				para i<-0 Hasta 9 Hacer
+					Escribir '[' Vector_B[i] ']'
+				FinPara
+				nD=2 
+			'C':
+				para i<-0 Hasta 9 Hacer
+					Escribir '[' Vector_C[i] ']'
+				FinPara
+				nD=2
+			De Otro Modo:
+				Escribir 'la instruccion ingresada es erronea'
+				Escribir 'Ingresela de nuevo'
+		FinSegun
+	Mientras Que nD=0 
+	
 FinSubProceso
 
 
